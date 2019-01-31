@@ -9,7 +9,7 @@ command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(2000)"]
 
 ## 2. Create an Nginx Pod and attach an EmptyDir volume to it.
 
-## 3. Create an Nginx Pod in the namespace “kube-cologne” to be able to access it on HTTP (80) and HTTPS (443)
+## 3. Create an Nginx deployment in the namespace “kube-cologne” and corresponding service of type NodePort . Service should be accessible on HTTP (80) and HTTPS (443)
 
 ## 4. Add label to a node as "arch=gpu"
 
@@ -169,3 +169,9 @@ b. Check the history of the previous Nginx deployment
 c. Update the Nginx version to the 1.9.1 in the previous deployment   
 
 d. Check the history of the deployment to note the new entry
+
+## 19. Add liveness and readiness probe to kuard container 
+
+    For liveness probe path used for health request is `/healthy` on port 8080
+    For readiness probe path used for ready request is `/ready` on port 8080
+    Image: gcr.io/kuar-demo/kuard-amd64:1

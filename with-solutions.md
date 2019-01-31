@@ -433,3 +433,40 @@ d. Check the history of the deployment to note the new entry
 ```
         kubectl rollout history deployment my-nginx
 ```
+
+## 19. Add liveness and readiness probe to kuard container 
+
+    For liveness probe path used for health request is `/healthy` on port 8080
+    For readiness probe path used for ready request is `/ready` on port 8080
+    Image: gcr.io/kuar-demo/kuard-amd64:1
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard
+spec:
+  containers:
+    - image: gcr.io/kuar-demo/kuard-amd64:1
+      name: kuard
+      livenessProbe:
+        httpGet:
+          path: /healthy
+          port: 8080
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+        periodSeconds: 10
+        failureThreshold: 3
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: 8080
+        initialDelaySeconds: 30
+        timeoutSeconds: 1
+        periodSeconds: 10
+        failureThreshold: 3
+      ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+```
