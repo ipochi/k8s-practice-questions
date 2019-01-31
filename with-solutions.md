@@ -45,7 +45,7 @@ spec:
     emptyDir: {}
 ```
 
-## 3. Create an Nginx Pod in the namespace “kube-cologne” to be able to access it on HTTP (80) and HTTPS (443)
+## 3. Create an Nginx deployment in the namespace “kube-cologne” and corresponding service of type NodePort . Service should be accessible on HTTP (80) and HTTPS (443)
 
 ```
 apiVersion: v1
@@ -77,6 +77,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
+  namespace: kube-cologne
 spec:
   type: NodePort
   ports:
@@ -408,3 +409,27 @@ spec:
 ```
 
 Only 4 replicaes will be available
+
+
+## 18. Deployment Exercise
+
+a. Create nginx deployment and scale to 3
+```
+    kubectl create deployment my-nginx --image=nginx
+    kubectl scale deployment/my-nginx --replicas=3
+```
+
+b. Check the history of the previous Nginx deployment
+```
+    kubectl rollout history deployment my-nginx    
+```    
+
+c. Update the Nginx version to the 1.9.1 in the previous deployment
+```
+    kubectl set image deployment/my-nginx nginx=nginx:1.9.1
+```    
+
+d. Check the history of the deployment to note the new entry
+```
+        kubectl rollout history deployment my-nginx
+```

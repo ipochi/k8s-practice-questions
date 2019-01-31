@@ -159,3 +159,13 @@ Maximum of 4 pods should be running in the namespace "pod-quota"
 
 Only 4 replicas should be available
 ```
+
+## 18. Deployment Exercise
+
+a. Create nginx deployment and scale to 3
+
+b. Check the history of the previous Nginx deployment
+
+c. Update the Nginx version to the 1.9.1 in the previous deployment   
+
+d. Check the history of the deployment to note the new entry
