@@ -276,7 +276,7 @@ spec:
   restartPolicy: Never
 ```
 
-## 15. Create a ResourceQuota in a namespace "kube-cologn" that allows maximum of
+## 15. Create a ResourceQuota in a namespace "kube-cologne" that allows maximum of
 
  ```   
         - 10 ConfigMaps
@@ -291,6 +291,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: max-count
+  namespace: kube-cologne
 spec:
   hard:
     configmaps: "10"
@@ -320,6 +321,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: quota-namespace
+  namespace: quota-namespace
 spec:
   hard:
     requests.cpu: "1"
@@ -393,6 +395,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pod-quota-demo
+  namespace: pod-quota
 spec:
   selector:
     matchLabels:

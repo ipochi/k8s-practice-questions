@@ -172,6 +172,6 @@ d. Check the history of the deployment to note the new entry
 
 ## 19. Add liveness and readiness probe to kuard container 
 
-    For liveness probe path used for health request is `/healthy` on port 8080
-    For readiness probe path used for ready request is `/ready` on port 8080
+    For liveness probe, path used for health request is `/healthy` on port 8080
+    For readiness probe, path used for ready request is `/ready` on port 8080
     Image: gcr.io/kuar-demo/kuard-amd64:1
